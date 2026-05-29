@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Dashboard Tipo de Cambio Guatemala | Análisis Económico · Esbhan Ruiz</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Inter', sans-serif; background: #f4f7fc; color: #1a2c3e; line-height: 1.4; padding: 2rem 1.5rem;}
+        .dashboard-container {max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 2rem; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08); padding: 2rem;}
+        .back-button {display: inline-flex; align-items: center; gap: 0.5rem; color: #2E86AB; text-decoration: none; font-weight: 600; margin-bottom: 1.5rem; transition: all 0.3s;}
+        .back-button:hover {gap: 1rem; color: #1f5e7a;}
+        .header {border-bottom: 1px solid #e2edf2; margin-bottom: 2rem; padding-bottom: 1.5rem;}
+        .badge {background: #eef2fa; color: #1e5a7d; border-radius: 40px; padding: 0.25rem 1rem; font-size: 0.75rem; font-weight: 600; display: inline-block; margin-bottom: 1rem;}
+        h1 {font-size: 1.9rem; font-weight: 700; background: linear-gradient(135deg, #1E3C4C, #2C5A6E); -webkit-background-clip: text; background-clip: text; color: transparent;}
+        .sub {color: #5a6e7c; margin-top: 0.5rem; font-size: 0.95rem; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;}
+        .intro-text {background: #f0f6fa; padding: 1rem 1.4rem; border-radius: 20px; margin: 1.2rem 0 1.8rem 0; font-size: 0.95rem; color: #1f4e6e; border-left: 4px solid #2c9b8c;}
+        .kpi-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;}
+        .kpi-card {background: white; border-radius: 1.5rem; padding: 1.2rem; box-shadow: 0 5px 12px rgba(0,0,0,0.03); border: 1px solid #e9eff3; transition: all 0.2s; cursor: pointer;}
+        .kpi-card:hover {transform: translateY(-5px) scale(1.01); box-shadow: 0 20px 25px -12px rgba(0,0,0,0.12); border-color: #cbdbe2;}
+        .kpi-title {font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600; color: #5b7e94; display: flex; align-items: center; gap: 8px;}
+        .kpi-value {font-size: 2.4rem; font-weight: 800; color: #1a3b4e; margin: 0.5rem 0 0.2rem;}
+        .charts-row {display: flex; flex-wrap: wrap; gap: 2rem; margin: 2rem 0;}
+        .chart-box {flex: 1; min-width: 280px; background: #ffffff; border-radius: 1.5rem; padding: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.02); border: 1px solid #eef2f5; transition: all 0.2s;}
+        .chart-box:hover {box-shadow: 0 8px 18px rgba(0,0,0,0.05); transform: scale(1.01);}
+        .chart-title {font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; font-size: 1.1rem; color: #1f5e7a;}
+        canvas {max-height: 330px; width: 100%;}
+        @keyframes fadeSlideUp {from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);}}
+        .kpi-card, .chart-box {animation: fadeSlideUp 0.5s ease forwards;}
+        .kpi-card:nth-child(1) {animation-delay: 0.05s;}
+        .kpi-card:nth-child(2) {animation-delay: 0.1s;}
+        .kpi-card:nth-child(3) {animation-delay: 0.15s;}
+        .kpi-card:nth-child(4) {animation-delay: 0.2s;}
+        .chart-box:nth-child(1) {animation-delay: 0.25s;}
+        .chart-box:nth-child(2) {animation-delay: 0.35s;}
+    </style>
+</head>
+<body>
+<div class="dashboard-container">
+    <a href="../../" class="back-button"><i class="fas fa-arrow-left"></i> Volver</a>
+    <div class="header">
+        <div class="badge"><i class="fas fa-chart-line"></i> DATOS OFICIALES BANGUAT</div>
+        <h1>Tipo de Cambio USD/GTQ 2026</h1>
+        <div class="sub">
+            <span><i class="fas fa-calendar-alt"></i> 1 enero - 29 mayo 2026</span>
+            <span><i class="fas fa-chart-simple"></i> Quetzal vs. Dólar</span>
+        </div>
+    </div>
+    <div class="kpi-grid" id="kpiContainer"></div>
+    <div class="charts-row">
+        <div class="chart-box">
+            <div class="chart-title"><i class="fas fa-chart-line" style="color:#2E86AB"></i> Tendencia 2026</div>
+            <canvas id="annualChart"></canvas>
+        </div>
+        <div class="chart-box">
+            <div class="chart-title"><i class="fas fa-calendar-week"></i> Mayo 2026</div>
+            <canvas id="monthlyChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+const rawCSV = `Fecha,TCR\n01/01/2026,7.66451\n02/01/2026,7.66536\n03/01/2026,7.66536\n04/01/2026,7.66536\n05/01/2026,7.65970\n06/01/2026,7.66244\n07/01/2026,7.66482\n08/01/2026,7.66571\n09/01/2026,7.66604\n10/01/2026,7.66604\n11/01/2026,7.66604\n12/01/2026,7.66415\n13/01/2026,7.66315\n14/01/2026,7.66519\n15/01/2026,7.66567\n16/01/2026,7.66386\n17/01/2026,7.66386\n18/01/2026,7.66386\n19/01/2026,7.66210\n20/01/2026,7.66827\n21/01/2026,7.66500\n22/01/2026,7.66794\n23/01/2026,7.66802\n24/01/2026,7.66802\n25/01/2026,7.66802\n26/01/2026,7.66412\n27/01/2026,7.66336\n28/01/2026,7.66752\n29/01/2026,7.66777\n30/01/2026,7.66614\n31/01/2026,7.66614\n01/02/2026,7.66614\n02/02/2026,7.66326\n03/02/2026,7.66598\n04/02/2026,7.66678\n05/02/2026,7.66569\n06/02/2026,7.66721\n07/02/2026,7.66721\n08/02/2026,7.66721\n09/02/2026,7.66397\n10/02/2026,7.66387\n11/02/2026,7.66450\n12/02/2026,7.66507\n13/02/2026,7.66287\n14/02/2026,7.66287\n15/02/2026,7.66287\n16/02/2026,7.66300\n17/02/2026,7.66739\n18/02/2026,7.66449\n19/02/2026,7.66561\n20/02/2026,7.66349\n21/02/2026,7.66349\n22/02/2026,7.66349\n23/02/2026,7.66432\n24/02/2026,7.66434\n25/02/2026,7.66607\n26/02/2026,7.66496\n27/02/2026,7.66476\n28/02/2026,7.66476\n01/03/2026,7.66476\n02/03/2026,7.66143\n03/03/2026,7.66580\n04/03/2026,7.66344\n05/03/2026,7.66314\n06/03/2026,7.66271\n07/03/2026,7.66271\n08/03/2026,7.66271\n09/03/2026,7.65904\n10/03/2026,7.65857\n11/03/2026,7.66069\n12/03/2026,7.66050\n13/03/2026,7.65814\n14/03/2026,7.65814\n15/03/2026,7.65814\n16/03/2026,7.65284\n17/03/2026,7.65213\n18/03/2026,7.65267\n19/03/2026,7.65445\n20/03/2026,7.65366\n21/03/2026,7.65366\n22/03/2026,7.65366\n23/03/2026,7.64871\n24/03/2026,7.64664\n25/03/2026,7.64911\n26/03/2026,7.65120\n27/03/2026,7.65053\n28/03/2026,7.65053\n29/03/2026,7.65053\n30/03/2026,7.64548\n31/03/2026,7.64677\n01/04/2026,7.64121\n02/04/2026,7.64121\n03/04/2026,7.64121\n04/04/2026,7.64121\n05/04/2026,7.64121\n06/04/2026,7.64294\n07/04/2026,7.64175\n08/04/2026,7.64356\n09/04/2026,7.64245\n10/04/2026,7.64268\n11/04/2026,7.64268\n12/04/2026,7.64268\n13/04/2026,7.63886\n14/04/2026,7.63809\n15/04/2026,7.64079\n16/04/2026,7.64035\n17/04/2026,7.63962\n18/04/2026,7.63962\n19/04/2026,7.63962\n20/04/2026,7.63709\n21/04/2026,7.63568\n22/04/2026,7.63726\n23/04/2026,7.63875\n24/04/2026,7.63867\n25/04/2026,7.63867\n26/04/2026,7.63867\n27/04/2026,7.63378\n28/04/2026,7.63391\n29/04/2026,7.63476\n30/04/2026,7.63627\n01/05/2026,7.63627\n02/05/2026,7.63627\n03/05/2026,7.63627\n04/05/2026,7.63079\n05/05/2026,7.63017\n06/05/2026,7.63120\n07/05/2026,7.63027\n08/05/2026,7.62929\n09/05/2026,7.62929\n10/05/2026,7.62929\n11/05/2026,7.62478\n12/05/2026,7.62488\n13/05/2026,7.62421\n14/05/2026,7.62525\n15/05/2026,7.62326\n16/05/2026,7.62326\n17/05/2026,7.62326\n18/05/2026,7.61963\n19/05/2026,7.61971\n20/05/2026,7.62313\n21/05/2026,7.62184\n22/05/2026,7.62106\n23/05/2026,7.62106\n24/05/2026,7.62106\n25/05/2026,7.61679\n26/05/2026,7.62260\n27/05/2026,7.62099\n28/05/2026,7.62430\n29/05/2026,7.62240`;
+
+const lines = rawCSV.split('\n');
+const exchangeData = [];
+for(let i=1; i<lines.length; i++) {
+    let line = lines[i].trim();
+    if(line === "") continue;
+    let parts = line.split(',');
+    if(parts.length >= 2) {
+        let dateStr = parts[0];
+        let rate = parseFloat(parts[1]);
+        if(!isNaN(rate)) {
+            exchangeData.push({ date: dateStr, rate: rate });
+        }
+    }
+}
+
+const annualData = exchangeData;
+const mayData = exchangeData.filter(d => d.date.substring(3,5) === '05');
+
+const rates = annualData.map(d => d.rate);
+const avgAnnual = (rates.reduce((a,b) => a+b,0)/rates.length).toFixed(4);
+const maxRate = Math.max(...rates).toFixed(4);
+const minRate = Math.min(...rates).toFixed(4);
+const mayFirst = mayData[0]?.rate;
+const mayLast = mayData[mayData.length-1]?.rate;
+let monthlyVar = 0;
+let monthlyVarPercent = 0;
+if(mayFirst && mayLast) {
+    monthlyVar = (mayLast - mayFirst).toFixed(4);
+    monthlyVarPercent = ((mayLast - mayFirst)/mayFirst * 100).toFixed(2);
+}
+
+const annualLabels = annualData.map(d => {
+    const [day,month] = d.date.split('/');
+    return `${day}/${month}`;
+});
+const annualRates = annualData.map(d => d.rate);
+
+const monthlyLabels = mayData.map(d => {
+    const [day] = d.date.split('/');
+    return day;
+});
+const monthlyRates = mayData.map(d => d.rate);
+
+const kpiGrid = document.querySelector('.kpi-grid');
+const kpis = [
+    { title: "Promedio anual", value: `Q ${avgAnnual}`, icon: "fas fa-chart-line" },
+    { title: "Máximo", value: `Q ${maxRate}`, icon: "fas fa-arrow-up" },
+    { title: "Mínimo", value: `Q ${minRate}`, icon: "fas fa-arrow-down" },
+    { title: "Variación mayo", value: `${monthlyVarPercent}%`, icon: "fas fa-percent" }
+];
+kpis.forEach(k => {
+    const card = document.createElement('div');
+    card.className = 'kpi-card';
+    card.innerHTML = `
+        <div class="kpi-title"><i class="${k.icon}"></i> ${k.title}</div>
+        <div class="kpi-value">${k.value}</div>
+    `;
+    kpiGrid.appendChild(card);
+});
+
+new Chart(document.getElementById('annualChart').getContext('2d'), {
+    type: 'line',
+    data: {
+        labels: annualLabels,
+        datasets: [{
+            label: 'Q/USD',
+            data: annualRates,
+            borderColor: '#2E86AB',
+            backgroundColor: 'rgba(46,134,171,0.03)',
+            borderWidth: 2.2,
+            tension: 0.2,
+            fill: true,
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { x: { ticks: { maxRotation: 45, autoSkip: true, maxTicksLimit: 12 } } },
+        animation: { duration: 1400 }
+    }
+});
+
+new Chart(document.getElementById('monthlyChart').getContext('2d'), {
+    type: 'line',
+    data: {
+        labels: monthlyLabels,
+        datasets: [{
+            label: 'Mayo 2026',
+            data: monthlyRates,
+            borderColor: '#D4AF37',
+            backgroundColor: 'rgba(212,175,55,0.02)',
+            borderWidth: 2.5,
+            tension: 0.15,
+            fill: true,
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        animation: { duration: 1300 }
+    }
+});
+</script>
+</body>
+</html>
