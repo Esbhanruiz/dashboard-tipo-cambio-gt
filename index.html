@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal de análisis económico y financiero profesional. Accede a dashboards interactivos de análisis de tipo de cambio, inflación y más. Educación financiera gratuita.">
+    <meta name="keywords" content="análisis económico, tipo de cambio, finanzas, Guatemala, dashboards interactivos">
+    <meta name="author" content="Esbhan Ruiz">
+    <meta property="og:title" content="Análisis Económico Profesional - Esbhan Ruiz">
+    <meta property="og:description" content="Dashboards interactivos de análisis económico y financiero. Aprende sobre tipo de cambio, inflación y más.">
+    <meta property="og:type" content="website">
+    <title>Análisis Económico Profesional | Esbhan Ruiz</title>
+    
+    <!-- Font Awesome 6 para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <!-- HEADER/NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-chart-line"></i>
+                <span class="brand-text">Esbhan Ruiz</span>
+                <span class="brand-subtitle">Análisis Económico</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                <li><a href="#dashboards" class="nav-link">Dashboards</a></li>
+                <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+                <li><a href="#acerca" class="nav-link">Acerca de</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Análisis Económico Profesional</h1>
+            <p class="hero-subtitle">Comprende el comportamiento de los mercados financieros con dashboards interactivos y explicaciones claras</p>
+            <p class="hero-description">Educación financiera accesible para todos. Sin jerga complicada, sin registros, 100% gratuito.</p>
+            <div class="hero-buttons">
+                <a href="#dashboards" class="btn btn-primary"><i class="fas fa-chart-column"></i> Ver Análisis</a>
+                <a href="blog/index.html" class="btn btn-secondary"><i class="fas fa-book"></i> Leer Artículos</a>
+            </div>
+            <div class="hero-features">
+                <div class="feature-badge">
+                    <i class="fas fa-lock-open"></i>
+                    <span>Acceso Gratuito</span>
+                </div>
+                <div class="feature-badge">
+                    <i class="fas fa-user-slash"></i>
+                    <span>Sin Registro</span>
+                </div>
+                <div class="feature-badge">
+                    <i class="fas fa-database"></i>
+                    <span>Datos Oficiales</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="chart-placeholder">
+                <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Línea ascendente estilizada -->
+                    <polyline points="10,180 50,150 90,160 130,120 170,90 210,110 250,60 290,50" 
+                              fill="none" stroke="#2E86AB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="10,180 50,150 90,160 130,120 170,90 210,110 250,60 290,50" 
+                              fill="url(#gradient)" opacity="0.1"/>
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#2E86AB;stop-opacity:0.3" />
+                            <stop offset="100%" style="stop-color:#2E86AB;stop-opacity:0" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Puntos -->
+                    <circle cx="10" cy="180" r="4" fill="#2E86AB"/>
+                    <circle cx="290" cy="50" r="4" fill="#2E86AB"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE DASHBOARDS -->
+    <section id="dashboards" class="dashboards-section">
+        <div class="section-header">
+            <h2>Mis Análisis Disponibles</h2>
+            <p>Explora nuestros dashboards interactivos con datos oficiales y análisis actualizados</p>
+        </div>
+        
+        <div class="dashboards-grid" id="dashboardsGrid">
+            <!-- Se llena dinámicamente con JS -->
+        </div>
+    </section>
+
+    <!-- SECCIÓN FEATURES -->
+    <section class="features-section">
+        <div class="section-header">
+            <h2>¿Por Qué Confiar en Nuestros Análisis?</h2>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Datos Oficiales</h3>
+                <p>Todos nuestros análisis utilizan datos verificados de fuentes oficiales como Banguat, INE y organismos internacionales.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Explicaciones Claras</h3>
+                <p>Sin jerga financiera complicada. Explicamos cada concepto de forma que cualquier persona lo entienda.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mouse"></i>
+                </div>
+                <h3>Interactivos</h3>
+                <p>Explora los datos tú mismo. Cada dashboard permite interacción completa sin limitaciones.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar"></i>
+                </div>
+                <h3>Actualizados</h3>
+                <p>Nuevos análisis publicados regularmente conforme se genera información económica relevante.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Acceso Global</h3>
+                <p>Disponible desde cualquier dispositivo, en cualquier lugar. Sin restricciones geográficas.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Educativo</h3>
+                <p>Aprende sobre economía y finanzas mientras exploras datos reales y actuales.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN ACERCA DE -->
+    <section id="acerca" class="about-section">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>Acerca de Este Portal</h2>
+                <p>Mi nombre es <strong>Esbhan Ruiz</strong> y soy analista financiero y económico. Desde hace años, realizo análisis diarios de la situación económica, enfocándome en hacer la información financiera accesible para todos.</p>
+                
+                <p>Este portal es mi compromiso con la <strong>educación financiera libre y democrática</strong>. Creo que todos tenemos derecho a entender cómo funciona nuestra economía, sin necesidad de ser economista o tener una cuenta Premium en plataformas caras.</p>
+                
+                <h3>Filosofía</h3>
+                <ul class="philosophy-list">
+                    <li><strong>Transparencia:</strong> Datos verificables de fuentes oficiales</li>
+                    <li><strong>Accesibilidad:</strong> Lenguaje claro para todos los niveles</li>
+                    <li><strong>Independencia:</strong> Análisis objetivo sin sesgos comerciales</li>
+                    <li><strong>Actualización:</strong> Información oportuna y relevante</li>
+                </ul>
+            </div>
+            <div class="about-stats">
+                <div class="stat-box">
+                    <div class="stat-number" id="dashCount">1</div>
+                    <div class="stat-label">Dashboards Publicados</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Gratis y Accesible</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Conocimiento Compartido</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER CTA -->
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <h2>Recibe Notificaciones de Nuevos Análisis</h2>
+            <p>Suscríbete para enterarte cuando publiquemos nuevos dashboards y artículos</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <button type="submit" class="btn btn-primary">Suscribirse</button>
+            </form>
+            <p class="newsletter-note">✓ Sin spam. ✓ Fácil de cancelar. ✓ Respetamos tu privacidad.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Portal de Análisis</h4>
+                <ul>
+                    <li><a href="#dashboards">Dashboards</a></li>
+                    <li><a href="blog/index.html">Blog</a></li>
+                    <li><a href="#acerca">Acerca de</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Categorías</h4>
+                <ul>
+                    <li><a href="dashboards/tipo-cambio-2026/">Tipo de Cambio</a></li>
+                    <li><a href="#">Inflación</a></li>
+                    <li><a href="#">Reservas Internacionales</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Sígueme</h4>
+                <div class="social-links">
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Términos de Uso</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Descargo de Responsabilidad</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Esbhan Ruiz - Análisis Económico. Todos los derechos reservados.</p>
+            <p>Alojado en <strong>GitHub Pages</strong> | Datos de fuentes oficiales | <a href="https://github.com/Esbhanruiz/dashboard-tipo-cambio-gt" target="_blank">Ver en GitHub</a></p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
